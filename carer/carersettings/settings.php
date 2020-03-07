@@ -8,6 +8,24 @@ if(!isset($_SESSION["sensum_40159215"]))
     header("Location: /SensumEmotionalApplication/login/login.php");
 }
 
+print_r($_SESSION);
+
+$getuserid = "SELECT * FROM `Sensum_Users` WHERE `Username` = '{$_SESSION['sensum_40159215']}'";
+$userresult = mysqli_query($conn, $getuserid) or die(mysqli_error($conn));
+
+//Not sure why this isnt working
+if(mysqli_num_rows($userresult)>0) {
+    while($row = mysqli_fetch_assoc($userresult)){
+      $id = $row['ID'];
+      $typeid = $row['UserType_ID'];
+      $name = $row['Name'];
+      $username = $row['Username'];
+      echo "User found";
+    }
+} else {
+    echo "User does not exist";
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -47,16 +65,19 @@ if(!isset($_SESSION["sensum_40159215"]))
   <div class="container-fluid my-2">
     <div class="row">
       <div class="col-md-6 align-self- mx-auto">
-        <form>
+        <form name="settings" action="submit-settings.php" method="POST">
           <div class="form-group">
+            <input type="hidden" id="userid" name="userid" value="1">
+            <input type="hidden" id="carerid" name="carerid" value="2">
             <label for="dailymessage">Your daily message for your user!</label>
-            <textarea class="form-control" id="dailymessage" rows="3"></textarea>
+            <textarea class="form-control" id="dailymessage" rows="3" name="message"></textarea>
           </div>
           <button type="submit" class="btn btn-success">Submit</button>
         </form>
       </div>
     </div>
   </div>
+
 
   <!-- Bootstrap core JavaScript -->
   <script src="/SensumEmotionalApplication/vendor/jquery/jquery.min.js"></script>

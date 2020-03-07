@@ -4,8 +4,8 @@ include("../../connection/conn.php");
 //Gets EVENT COUNT!
 $eventNewCount = $_POST['eventNewCount'];
 //Get dates
-echo $todaysdate = date('Y-m-d H:i:s');
-echo $nextdate = date('Y-m-d H:i:s', strtotime("+1 day"));
+$todaysdate = date('Y-m-d H:i:s');
+$nextdate = date('Y-m-d H:i:s', strtotime("+1 day"));
 // Gets Events with matching ID
 $geteventsquery = "SELECT * FROM `Sensum_Events` WHERE `id` = '$eventNewCount'";
 //Stores ALL Events in result (Most likely an array)!

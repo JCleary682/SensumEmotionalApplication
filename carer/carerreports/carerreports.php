@@ -48,8 +48,8 @@ echo $nextdate = date('Y-m-d H:i:s', strtotime("+1 week"));
 			var data = google.visualization.arrayToDataTable([  
 				['Emotion', 'Number'],  
 				<?php  
-				echo $todaysdate = date('Y-m-d H:i:s');
-				echo $nextdate = date('Y-m-d H:i:s', strtotime("+1 week"));
+				$todaysdate = date('Y-m-d H:i:s');
+				$nextdate = date('Y-m-d H:i:s', strtotime("+1 week"));
 
 				$feedbackquery = "SELECT *, count(*) as number FROM `Sensum_HealthRecord`
 									INNER JOIN `Sensum_FeedbackType`
