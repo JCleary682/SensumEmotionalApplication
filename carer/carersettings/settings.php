@@ -1,5 +1,6 @@
 <?php
-include("/SensumEmotionalApplication/functions/functions.php");
+include("../../connection/conn.php");
+include("../../functions/functions.php");
 session_start();
 
 if(!isset($_SESSION["sensum_40159215"]))
@@ -42,6 +43,20 @@ if(!isset($_SESSION["sensum_40159215"]))
   ?>
 
   <!-- Card Grid -->
+
+  <div class="container-fluid my-2">
+    <div class="row">
+      <div class="col-md-6 align-self- mx-auto">
+        <form>
+          <div class="form-group">
+            <label for="dailymessage">Your daily message for your user!</label>
+            <textarea class="form-control" id="dailymessage" rows="3"></textarea>
+          </div>
+          <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
 
   <!-- Bootstrap core JavaScript -->
   <script src="/SensumEmotionalApplication/vendor/jquery/jquery.min.js"></script>
