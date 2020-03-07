@@ -8,9 +8,9 @@ if(!isset($_SESSION["sensum_40159215"]))
 
 include("../../connection/conn.php");
 include("../../functions/functions.php");
-$geteventsquery = "SELECT * FROM `Sensum_Events`";
-$result = mysqli_query($conn, $geteventsquery) or die(mysqli_error($conn));
-$numrows = $result->num_rows;
+// $geteventsquery = "SELECT * FROM `Sensum_Events`";
+// $result = mysqli_query($conn, $geteventsquery) or die(mysqli_error($conn));
+// $numrows = $result->num_rows;
 // printf($numrows);
 ?>
 <html>  
@@ -36,7 +36,8 @@ $numrows = $result->num_rows;
   <script>
         //Jquery code here!
         $(document).ready(function(){
-           var eventCount = 1;
+           // var eventCount = 1;
+           var eventCount = document.getElementById("Event_ID").value;
            $("#save").click(function(){
              eventCount = eventCount + 1;
              console.log(eventCount);
@@ -90,7 +91,10 @@ $numrows = $result->num_rows;
 
  <!-- Get form entries from database -->
  <?php
- $geteventsquery = "SELECT * FROM `Sensum_Events`";
+ $todaysdate = date('Y-m-d H:i:s');
+ $nextdate = date('Y-m-d H:i:s', strtotime("+1 day"));
+ $geteventsquery = "SELECT * FROM `Sensum_Events`
+                    WHERE `User_ID` = 1 AND `Event_Start` BETWEEN '$todaysdate' AND '$nextdate'";
  $result = mysqli_query($conn, $geteventsquery) or die(mysqli_error($conn));
  $row = mysqli_fetch_assoc($result);
  if(mysqli_num_rows($result) > 0){

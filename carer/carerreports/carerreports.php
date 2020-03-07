@@ -19,6 +19,8 @@ $responsequery = "SELECT * FROM `Sensum_HealthRecord`
 				  LIMIT 10";
 $responsequeryresult = mysqli_query($conn, $responsequery);
 $responsecount = mysqli_num_rows($responsequeryresult);
+echo $todaysdate = date('Y-m-d H:i:s');
+echo $nextdate = date('Y-m-d H:i:s', strtotime("+1 week"));
 ?>
 
 <!-- https://www.webslesson.info/2016/10/make-simple-pie-chart-by-google-chart-api-with-php-mysql.html -->
@@ -44,13 +46,22 @@ $responsecount = mysqli_num_rows($responsequeryresult);
 		function drawChart()  
 		{  
 			var data = google.visualization.arrayToDataTable([  
-				['Feedback', 'Number'],  
+				['Emotion', 'Number'],  
 				<?php  
-				$feedbackquery = "SELECT `Feedback`, count(*) as number FROM `Sensum_HealthRecord` WHERE `User_ID` = 1 GROUP BY `Feedback`";
+				echo $todaysdate = date('Y-m-d H:i:s');
+				echo $nextdate = date('Y-m-d H:i:s', strtotime("+1 week"));
+
+				$feedbackquery = "SELECT *, count(*) as number FROM `Sensum_HealthRecord`
+									INNER JOIN `Sensum_FeedbackType`
+									ON `Sensum_HealthRecord`.`Feedback` = `Sensum_FeedbackType`.`Feedback_Type`
+									INNER JOIN `Sensum_Events`
+									ON `Sensum_HealthRecord`.`Event_ID` = `Sensum_Events`.`id`
+									WHERE `Sensum_HealthRecord`.`User_ID` = 1 AND `Sensum_Events`.`Event_Start` BETWEEN '$todaysdate' AND '$nextdate'
+									GROUP BY `Feedback`";
 				$result = mysqli_query($conn, $feedbackquery);
 				while($row = mysqli_fetch_array($result))  
 				{  
-					echo "['".$row["Feedback"]."', ".$row["number"]."],";  
+					echo "['".$row["Emotion"]."', ".$row["number"]."],";  
 				}  
 				?>  
 				]);  
