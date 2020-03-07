@@ -81,22 +81,18 @@ echo $nextdate = date('Y-m-d H:i:s', strtotime("+1 week"));
 		        $(document).ready(function(){
 		           $("#happy").click(function(){
 		             $("#report").load("filterhappy.php", {
-		             	//Test
 		             });
 		           });
 		           $("#sad").click(function(){
 		             $("#report").load("filtersad.php", {
-		             	//Test
 		             });
 		           });
 		           $("#indifferent").click(function(){
 		             $("#report").load("filterindifferent.php", {
-		             	//Test
 		             });
 		           });
 		           $("#more").click(function(){
 		             $("#report").load("load-more.php", {
-		             	//Test
 		             });
 		           });
 		         });
