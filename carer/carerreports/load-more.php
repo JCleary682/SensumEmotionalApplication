@@ -1,5 +1,5 @@
 <?php
-include("/SensumEmotionalApplication/connection/conn.php");
+include("../..//connection/conn.php");
 
 // HAPPY
 $morequery = "SELECT * FROM `Sensum_HealthRecord`
@@ -9,7 +9,6 @@ INNER JOIN `Sensum_Users`
 ON `Sensum_HealthRecord`.`User_ID` = `Sensum_Users`.`ID`
 INNER JOIN `Sensum_Events`
 ON `Sensum_HealthRecord`.`Event_ID` = `Sensum_Events`.`id`
-WHERE `Sensum_HealthRecord`.`Feedback` = 1
 LIMIT 10,20";
 $morequeryresult = mysqli_query($conn, $morequery);
 $morecount = mysqli_num_rows($morequeryresult);

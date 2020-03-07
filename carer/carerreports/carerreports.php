@@ -144,7 +144,7 @@ echo $nextdate = date('Y-m-d H:i:s', strtotime("+1 week"));
 									$eventresponse = $row['Emotion'];
 									$eventstart = $row['Event_Start'];
 									$eventend = $row['Event_End'];
-									echo "<tr>
+									echo "<tr id='reporttable'>
 											<td>$rownumber</td>
 											<td>$eventname</td>
 											<td>$eventresponse</td>

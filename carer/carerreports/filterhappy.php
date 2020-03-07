@@ -1,5 +1,6 @@
 <?php
-include("/SensumEmotionalApplication/connection/conn.php");
+include("../..//connection/conn.php");
+echo "Connection Successful!";
 
 // HAPPY
 $happyquery = "SELECT * FROM `Sensum_HealthRecord`
@@ -9,10 +10,10 @@ INNER JOIN `Sensum_Users`
 ON `Sensum_HealthRecord`.`User_ID` = `Sensum_Users`.`ID`
 INNER JOIN `Sensum_Events`
 ON `Sensum_HealthRecord`.`Event_ID` = `Sensum_Events`.`id`
-WHERE `Sensum_HealthRecord`.`Feedback` = 1
-LIMIT 10";
+WHERE `Sensum_HealthRecord`.`Feedback` = 1";
 $happyqueryresult = mysqli_query($conn, $happyquery);
 $happycount = mysqli_num_rows($happyqueryresult);
+echo $happycount;
 $rownumber = 1; 
 if ($happycount > 0) {
 	while ($row = mysqli_fetch_assoc($happyqueryresult)) {

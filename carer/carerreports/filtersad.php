@@ -1,5 +1,5 @@
 <?php
-include("/SensumEmotionalApplication/connection/conn.php");
+include("../../connection/conn.php");
 
 // HAPPY
 $sadquery = "SELECT * FROM `Sensum_HealthRecord`
