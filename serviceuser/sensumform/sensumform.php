@@ -97,6 +97,7 @@ include("../../functions/functions.php");
                     WHERE `User_ID` = 1 AND `Event_Start` BETWEEN '$todaysdate' AND '$nextdate'";
  $result = mysqli_query($conn, $geteventsquery) or die(mysqli_error($conn));
  $row = mysqli_fetch_assoc($result);
+ print_r($result);
  if(mysqli_num_rows($result) > 0){
    $eventid = $row['id'];
    $userid = $row['User_ID'];
@@ -181,105 +182,80 @@ include("../../functions/functions.php");
     // Add entries to form
     $('#add').click(function(){
     	$('#user_dialog').dialog('option', 'title', 'Add Data');
-    	$('#first_name').val('');
-    	$('#last_name').val('');
     	$('#emotion').val('');
-    	$('#error_first_name').text('');
-    	$('#error_last_name').text('');
     	$('#error_emotion').text('');
-    	$('#first_name').css('border-color', '');
-    	$('#last_name').css('border-color', '');
     	$('#save').text('Save');
     	$('#user_dialog').dialog('open');
     });
     // Save entries for form array + validation and display in a table
     $('#save').click(function(){
-    	var error_first_name = '';
-    	var error_last_name = '';
-    	var first_name = '';
-    	var last_name = '';
     	var emotion ='';
+      //Needs to take emotion description for event response
+      var emotiondescription = '';
     	var error_emotion = '';
     	var eventname = '';
     	var username ='';
-    	var eventid ='';
-    	var eventdescription = '';
-    	if($('#first_name').val() == '')
-    	{
-    		error_first_name = 'First Name is required';
-    		$('#error_first_name').text(error_first_name);
-    		$('#first_name').css('border-color', '#cc0000');
-    		first_name = '';
-    	}
-    	else
-    	{
-    		error_first_name = '';
-    		$('#error_first_name').text(error_first_name);
-    		$('#first_name').css('border-color', '');
-    		first_name = $('#first_name').val();
-    	}	
-    	if($('#last_name').val() == '')
-    	{
-    		error_last_name = 'Last Name is required';
-    		$('#error_last_name').text(error_last_name);
-    		$('#last_name').css('border-color', '#cc0000');
-    		last_name = '';
-    	}
-    	else
-    	{
-    		error_last_name = '';
-    		$('#error_last_name').text(error_last_name);
-    		$('#last_name').css('border-color', '');
-    		last_name = $('#last_name').val();
-    	}
+    	var eventid = $('#Event_ID').val();
+    	var eventdescription = $('#eventdescription').val();
+      var userid = $('#User_ID').val();
+
+      if($('input[name=emotion]:checked').val() == '1'){
+        emotiondescription = 'Happy';
+      } else if($('input[name=emotion]:checked').val() == '2'){
+        emotiondescription = 'Sad';
+      } else if($('input[name=emotion]:checked').val() == '3'){
+        emotiondescription = 'Indifferent';
+      } else {
+        emotiondescription = '';
+      }
     	//Takes Event id
     	//Currently only taking first event id
-    	if($('#Event_ID').val() == '')
-    	{
-    		eventid = 'Last Name is required';
-    		$('#error_last_name').text(error_last_name);
-    		$('#last_name').css('border-color', '#cc0000');
-    		eventid = '';
-    	}
-    	else
-    	{
-    		eventid = '';
-    		$('#error_last_name').text(error_last_name);
-    		$('#last_name').css('border-color', '');
-    		eventid = $('#Event_ID').val();
-    	}
+    	// if($('#Event_ID').val() == '')
+    	// {
+    	// 	eventid = 'Last Name is required';
+    	// 	$('#error_last_name').text(error_last_name);
+    	// 	$('#last_name').css('border-color', '#cc0000');
+    	// 	eventid = '';
+    	// }
+    	// else
+    	// {
+    	// 	eventid = '';
+    	// 	$('#error_last_name').text(error_last_name);
+    	// 	$('#last_name').css('border-color', '');
+    	// 	eventid = $('#Event_ID').val();
+    	// }
 
     	//Takes event description
-    	if($('#eventdescription').val() == '')
-    	{
-    		error_last_name = 'Last Name is required';
-    		$('#error_last_name').text(error_last_name);
-    		$('#last_name').css('border-color', '#cc0000');
-    		eventdescription = '';
-    	}
-    	else
-    	{
-    		error_last_name = '';
-    		$('#error_last_name').text(error_last_name);
-    		$('#last_name').css('border-color', '');
-    		eventdescription = $('#eventdescription').val();
-    	}
+    	// if($('#eventdescription').val() == '')
+    	// {
+    	// 	error_last_name = 'Last Name is required';
+    	// 	$('#error_last_name').text(error_last_name);
+    	// 	$('#last_name').css('border-color', '#cc0000');
+    	// 	eventdescription = '';
+    	// }
+    	// else
+    	// {
+    	// 	error_last_name = '';
+    	// 	$('#error_last_name').text(error_last_name);
+    	// 	$('#last_name').css('border-color', '');
+    	// 	eventdescription = $('#eventdescription').val();
+    	// }
     	
     	//Takes User ID
-    	if($('#User_ID').val() == '')
-    	{
-    		error_last_name = 'Last Name is required';
-    		$('#error_last_name').text(error_last_name);
-    		$('#last_name').css('border-color', '#cc0000');
-    		userid = '';
-    	}
-    	else
-    	{
-    		error_last_name = '';
-    		$('#error_last_name').text(error_last_name);
-    		$('#last_name').css('border-color', '');
-    		userid = $('#User_ID').val();
-    	}
+    	// if($('#User_ID').val() == '')
+    	// {
+    	// 	error_last_name = 'Last Name is required';
+    	// 	$('#error_last_name').text(error_last_name);
+    	// 	$('#last_name').css('border-color', '#cc0000');
+    	// 	userid = '';
+    	// }
+    	// else
+    	// {
+    	// 	error_last_name = '';
+    	// 	$('#error_last_name').text(error_last_name);
+    	// 	$('#last_name').css('border-color', '');
+    	// 	userid = $('#User_ID').val();
+    	// }
 
     	// Validation for radio buttons
     	if($('input[name=emotion]:checked').val() == ''){
@@ -294,7 +270,7 @@ include("../../functions/functions.php");
     		emotion = $('input[name=emotion]:checked').val();
     	}
 
-    	if(error_first_name != '' || error_last_name != '')
+    	if(error_emotion != '')
     	{
     		return false;
     	}
@@ -304,9 +280,9 @@ include("../../functions/functions.php");
     		{
     			count = count + 1;
     			output = '<tr id="row_'+count+'">';
-    			output += '<td>'+eventid+' <input type="hidden" name="hidden_event_name[]" id="event_name'+count+'" class="event_name" value="'+eventid+'" /></td>';
+    			output += '<td>'+eventdescription+' <input type="hidden" name="hidden_event_name[]" id="event_name'+count+'" class="event_name" value="'+eventid+'" /></td>';
     			output += '<td>'+userid+' <input type="hidden" name="hidden_user_name[]" id="user_name'+count+'" value="'+userid+'" /></td>';
-    			output += '<td>'+emotion+' <input type="hidden" name="hidden_emotion[]" id="emotion'+count+'" value="'+emotion+'" /></td>';
+    			output += '<td>'+emotiondescription+' <input type="hidden" name="hidden_emotion[]" id="emotion'+count+'" value="'+emotion+'" /></td>';
     			output += '<td><button type="button" name="view_details" class="btn btn-warning btn-xs view_details" id="'+count+'">View</button></td>';
     			output += '<td><button type="button" name="remove_details" class="btn btn-danger btn-xs remove_details" id="'+count+'">Remove</button></td>';
     			output += '</tr>';
