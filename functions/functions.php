@@ -18,7 +18,7 @@ function userNav(){
             <a class='nav-link rounded bg-danger' href='/SensumEmotionalApplication/serviceuser/sensumform/sensumform.php'>Daily Walkthrough</a>
           </li>
           <li class='nav-item mx-2'>
-            <a class='nav-link rounded bg-success' href='/SensumEmotionalApplication/serviceuser/reports/reports.php'>View Reports</a>
+            <a class='nav-link rounded bg-success' href='/SensumEmotionalApplication/serviceuser/reports/userreports.php'>View Reports</a>
           </li>
           <li class='nav-item mx-2'>
             <a class='nav-link rounded bg-warning' href='/SensumEmotionalApplication/serviceuser/settings/settings.php'>Your Settings</a>
