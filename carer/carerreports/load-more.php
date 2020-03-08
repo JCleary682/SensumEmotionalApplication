@@ -1,5 +1,5 @@
 <?php
-include("../..//connection/conn.php");
+include("../../connection/conn.php");
 
 // HAPPY
 $morequery = "SELECT * FROM `Sensum_HealthRecord`
