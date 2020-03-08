@@ -11,15 +11,11 @@ $nextdate = date('Y-m-d', strtotime("+1 day"));
 $geteventsquery = "SELECT * FROM `Sensum_Events` WHERE `Event_Start` > '$todaysdate' AND `Event_Start` < '$nextdate'\n"
 
     . "LIMIT $eventNewCount,1";
-$getmessagequery = "SELECT * FROM `Sensum_CaregiverMessage`   WHERE `id` = (SELECT MAX(`id`) FROM `Sensum_CaregiverMessage`) ";
+// $getmessagequery = "SELECT * FROM `Sensum_CaregiverMessage`   WHERE `id` = (SELECT MAX(`id`) FROM `Sensum_CaregiverMessage`) ";
 //Stores ALL Events in result (Most likely an array)!
 $result = mysqli_query($conn, $geteventsquery) or die(mysqli_error($conn));
-$messageresult = mysqli_query($conn, $getmessagequery) or die(mysqli_error($conn));
-// $row = mysqli_fetch_assoc($result);
+// $messageresult = mysqli_query($conn, $getmessagequery) or die(mysqli_error($conn));
 
-// mysqli_data_seek($result, $eventCount);
-// $eventNewCount = 7;
-// $row = mysqli_fetch_assoc($result);
 if(mysqli_num_rows($result) > 0){
 	while ($row = mysqli_fetch_assoc($result)) {
 		$eventid = $row['id'];
@@ -50,7 +46,21 @@ if(mysqli_num_rows($result) > 0){
 					";
 	}
 } else {
-	echo "Events Complet!";
+	$getmessagequery = "SELECT * FROM `Sensum_CaregiverMessage`   WHERE `id` = (SELECT MAX(`id`) FROM `Sensum_CaregiverMessage`) ";
+	$messageresult = mysqli_query($conn, $getmessagequery) or die(mysqli_error($conn));
+	$messagerows = mysqli_num_rows($messageresult);
+	if($messagerows > 0){
+		while($row = mysqli_fetch_assoc($messageresult)) {
+			$message = $row['Message'];
+			echo "<h1>$message<h1/>
+			<style>
+				#emotions {display: none}
+			</style>
+			";
+		}
+	} else {
+			echo "Events Complete!";
+	}
 }
 
 ?>

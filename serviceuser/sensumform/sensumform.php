@@ -8,10 +8,14 @@ if(!isset($_SESSION["sensum_40159215"]))
 
 include("../../connection/conn.php");
 include("../../functions/functions.php");
-// $geteventsquery = "SELECT * FROM `Sensum_Events`";
-// $result = mysqli_query($conn, $geteventsquery) or die(mysqli_error($conn));
-// $numrows = $result->num_rows;
-// printf($numrows);
+
+$getmessagequery = "SELECT * FROM `Sensum_CaregiverMessage` WHERE `id` = (SELECT MAX(`id`) FROM `Sensum_CaregiverMessage`)";
+$messageresult = mysqli_query($conn, $getmessagequery) or die(mysqli_error($conn));
+$row = mysqli_fetch_assoc($messageresult);
+
+if(mysqli_num_rows($messageresult) > 0){
+   $message = $row['Message'];
+ }
 ?>
 <html>  
 <head>  
@@ -127,7 +131,7 @@ include("../../functions/functions.php");
  }
  ?>
 
-     <div class='form-group'>
+     <div class='form-group' id="emotions">
       <span id='error_emotion' class='text-danger'></span>
       <br/>
       <br/>

@@ -30,6 +30,7 @@ if(!isset($_SESSION["sensum_40159215"]))
 	<script>
 		$(document).ready(function() {
 			var calendar = $('#calendar').fullCalendar({
+				height: 500,
 				editable: true,
 				header: {
 					left: 'prev next today',
@@ -105,9 +106,7 @@ if(!isset($_SESSION["sensum_40159215"]))
     ?>
     <!-- Navbar end -->
     </div>
-    <h1>Hello, world!</h1>
-
-    <br>
+    <h3>Your daily events!</h3>
     <br>
     <!-- Display Calendar -->
 

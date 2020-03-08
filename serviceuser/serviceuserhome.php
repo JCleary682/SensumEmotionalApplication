@@ -56,14 +56,12 @@ if(!isset($_SESSION["sensum_40159215"]))
         </ul>
       </div>
     </nav>
-	<!-- Navbar end -->
-	<h1>User Home</h1>
 
 	<!-- User Grid -->
 	<section class="bg-light text-center">
 		<div class="container">
 			<div class="row mb-4">
-				<div class="col-lg-4 my-3">
+				<div class="col-lg-4 my-2">
 					<div class="card card-inverse card-primary mb-3 text-center h-100 w-100">
 						<div class="card-block">
 							<div class="image-container">
@@ -71,7 +69,6 @@ if(!isset($_SESSION["sensum_40159215"]))
 							</div>
 							<blockquote class="card-blockquote">
 								<h2>View your users upcoming events!</h2>
-								<footer><p>View your upcoming events in a calendar format!</p></footer>
 							</blockquote>
 							<a href="/SensumEmotionalApplication/serviceuser/userevents/eventcalendar.php" class="btn btn-primary">View Calendar</a>
 						</div>
@@ -80,7 +77,7 @@ if(!isset($_SESSION["sensum_40159215"]))
 				<div class="col-lg-4">
 					<!-- Empty column for spacing -->
 				</div>
-				<div class="col-lg-4 my-3">
+				<div class="col-lg-4 my-2">
 					<div class="card card-inverse card-danger mb-3 text-center h-100 w-100">
 						<div class="card-block">
 							<div class="image-container">
@@ -88,16 +85,15 @@ if(!isset($_SESSION["sensum_40159215"]))
 							</div>
 							<blockquote class="card-blockquote">
 								<h2>Give feedback on your upcoming events!</h2>
-								<footer><p>View your daily events and provide feedback on your feelings towards them!</p></footer>
 							</blockquote>
-							<a href="/SensumEmotionalApplication/serviceuser/sensumform/sensumform.php" class="btn btn-primary">View Your Daily Walkthrough</a>
+							<a href="/SensumEmotionalApplication/serviceuser/sensumform/sensumform.php" class="btn btn-danger">View Your Daily Walkthrough</a>
 						</div>
 					</div>
 				</div>
 			</div>
 
 			<div class="row mb-4">
-				<div class="col-lg-4 my-3">
+				<div class="col-lg-4 my-2">
 					<div class="card card-inverse card-success mb-3 text-center h-100 w-100">
 						<div class="card-block">
 							<div class="image-container">
@@ -105,16 +101,15 @@ if(!isset($_SESSION["sensum_40159215"]))
 							</div>
 							<blockquote class="card-blockquote">
 								<h2>View your users event reports!</h2>
-								<footer><p>Get an overview to your users responses in a graphical format</p></footer>
 							</blockquote>
-							<a href="/SensumEmotionalApplication/serviceuser/reports/userreports.php" class="btn btn-primary">View Reports</a>
+							<a href="/SensumEmotionalApplication/serviceuser/reports/userreports.php" class="btn btn-success">View Reports</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-4">
 					<!-- Empty column for spacing -->
 				</div>
-				<div class="col-lg-4 my-3">
+				<div class="col-lg-4 my-2">
 					<div class="card card-inverse card-warning mb-3 text-center h-100 w-100">
 						<div class="card-block">
 							<div class="image-container">
@@ -122,9 +117,8 @@ if(!isset($_SESSION["sensum_40159215"]))
 							</div>
 							<blockquote class="card-blockquote">
 								<h2>Tailor your system to your needs!</h2>
-								<footer><p>Customize the system to your personal preference</p></footer>
 							</blockquote>
-							<a href="/SensumEmotionalApplication/serviceuser/settings/settings.php" class="btn btn-primary">Settings</a>
+							<a href="/SensumEmotionalApplication/serviceuser/settings/settings.php" class="btn btn-warning">Settings</a>
 						</div>
 					</div>
 				</div>
