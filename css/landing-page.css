@@ -88,8 +88,8 @@ header.masthead h1 {
 }
 
 .card-img-top {
-  max-height: 200px;
-  min-height: 200px;
+  max-height: 150px;
+  min-height: 150px;
   -o-object-fit: cover;
   object-fit: cover;
   width: 100%;
