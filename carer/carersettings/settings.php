@@ -8,23 +8,23 @@ if(!isset($_SESSION["sensum_40159215"]))
     header("Location: /SensumEmotionalApplication/login/login.php");
 }
 
-print_r($_SESSION);
+// print_r($_SESSION);
 
 $getuserid = "SELECT * FROM `Sensum_Users` WHERE `Username` = '{$_SESSION['sensum_40159215']}'";
 $userresult = mysqli_query($conn, $getuserid) or die(mysqli_error($conn));
 
 //Not sure why this isnt working
-if(mysqli_num_rows($userresult)>0) {
-    while($row = mysqli_fetch_assoc($userresult)){
-      $id = $row['ID'];
-      $typeid = $row['UserType_ID'];
-      $name = $row['Name'];
-      $username = $row['Username'];
-      echo "User found";
-    }
-} else {
-    echo "User does not exist";
-}
+// if(mysqli_num_rows($userresult)>0) {
+//     while($row = mysqli_fetch_assoc($userresult)){
+//       $id = $row['ID'];
+//       $typeid = $row['UserType_ID'];
+//       $name = $row['Name'];
+//       $username = $row['Username'];
+//       // echo "User found";
+//     }
+// } else {
+//     echo "User does not exist";
+// }
 
 ?>
 

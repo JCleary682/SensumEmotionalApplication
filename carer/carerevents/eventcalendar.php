@@ -10,6 +10,7 @@ if(!isset($_SESSION["sensum_40159215"]))
 
 ?>
 
+<!-- NEED TO ADD IN ABILITY TO ADD EVENTS TO CERTAIN USERS -->
 <!doctype html>
 <html lang="en">
   <head>
@@ -31,6 +32,7 @@ if(!isset($_SESSION["sensum_40159215"]))
 	<script>
 		$(document).ready(function() {
 			var calendar = $('#calendar').fullCalendar({
+				height: 500,
 				editable: true,
 				header: {
 					left: 'prev next today',
@@ -117,15 +119,12 @@ if(!isset($_SESSION["sensum_40159215"]))
   </head>
   <body>
     <div name="container">
-      
     <?php
     	carernav();
   	?>
     </div>
-    <h1>Hello, world!</h1>
-
-    <br>
-    <br>
+    <h2 align="center">Daily Calendar</h2>
+    <br/>
     <!-- Display Calendar -->
 
     <div class="container">

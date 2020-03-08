@@ -19,8 +19,8 @@ $responsequery = "SELECT * FROM `Sensum_HealthRecord`
 				  LIMIT 10";
 $responsequeryresult = mysqli_query($conn, $responsequery);
 $responsecount = mysqli_num_rows($responsequeryresult);
-echo $todaysdate = date('Y-m-d H:i:s');
-echo $nextdate = date('Y-m-d H:i:s', strtotime("+1 week"));
+$todaysdate = date('Y-m-d H:i:s');
+$nextdate = date('Y-m-d H:i:s', strtotime("+1 week"));
 ?>
 
 <!-- https://www.webslesson.info/2016/10/make-simple-pie-chart-by-google-chart-api-with-php-mysql.html -->
