@@ -8,8 +8,12 @@ $todaysdate = date('Y-m-d H:i:s');
 $nextdate = date('Y-m-d H:i:s', strtotime("+1 day"));
 // Gets Events with matching ID
 $geteventsquery = "SELECT * FROM `Sensum_Events` WHERE `id` = '$eventNewCount'";
+$getmessagequery = "SELECT * FROM `Sensum_CaregiverMessage`   WHERE `id` = (SELECT MAX(`id`) FROM `Sensum_CaregiverMessage`) ";
 //Stores ALL Events in result (Most likely an array)!
 $result = mysqli_query($conn, $geteventsquery) or die(mysqli_error($conn));
+$messageresult = mysqli_query($conn, $getmessagequery) or die(mysqli_error($conn));
+// $row = mysqli_fetch_assoc($result);
+
 // mysqli_data_seek($result, $eventCount);
 // $eventNewCount = 7;
 // $row = mysqli_fetch_assoc($result);
@@ -43,7 +47,7 @@ if(mysqli_num_rows($result) > 0){
 					";
 	}
 } else {
-	echo "Events Complete!";
+	echo "Events Complet!";
 }
 
 ?>

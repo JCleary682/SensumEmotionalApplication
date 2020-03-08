@@ -74,7 +74,7 @@ if(!isset($_SESSION["sensum_40159215"]))
 								<h2>View your users event reports!</h2>
 								<footer><p>Get an overview to your users responses in a graphical format</p></footer>
 							</blockquote>
-							<a href="/SensumEmotionalApplication/serviceuser/reports/reports.php" class="btn btn-primary">View Reports</a>
+							<a href="/SensumEmotionalApplication/serviceuser/reports/userreports.php" class="btn btn-primary">View Reports</a>
 						</div>
 					</div>
 				</div>
