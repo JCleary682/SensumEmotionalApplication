@@ -4,10 +4,13 @@ include("../../connection/conn.php");
 //Gets EVENT COUNT!
 $eventNewCount = $_POST['eventNewCount'];
 //Get dates
-$todaysdate = date('Y-m-d H:i:s');
-$nextdate = date('Y-m-d H:i:s', strtotime("+1 day"));
+$todaysdate = date('Y-m-d');
+$nextdate = date('Y-m-d', strtotime("+1 day"));
 // Gets Events with matching ID
-$geteventsquery = "SELECT * FROM `Sensum_Events` WHERE `id` = '$eventNewCount'";
+// $geteventsquery = "SELECT * FROM `Sensum_Events` WHERE `Event_Start` > '$todaysdate' AND `Event_Start` < '$nextdate' LIMIT '$eventNewCount',1";
+$geteventsquery = "SELECT * FROM `Sensum_Events` WHERE `Event_Start` > '$todaysdate' AND `Event_Start` < '$nextdate'\n"
+
+    . "LIMIT $eventNewCount,1";
 $getmessagequery = "SELECT * FROM `Sensum_CaregiverMessage`   WHERE `id` = (SELECT MAX(`id`) FROM `Sensum_CaregiverMessage`) ";
 //Stores ALL Events in result (Most likely an array)!
 $result = mysqli_query($conn, $geteventsquery) or die(mysqli_error($conn));

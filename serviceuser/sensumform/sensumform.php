@@ -36,8 +36,8 @@ include("../../functions/functions.php");
   <script>
         //Jquery code here!
         $(document).ready(function(){
-           // var eventCount = 1;
-           var eventCount = document.getElementById("Event_ID").value;
+           var eventCount = 0;
+           // var eventCount = document.getElementById("Event_ID").value;
            $("#save").click(function(){
              eventCount = eventCount + 1;
              console.log(eventCount);
@@ -72,7 +72,6 @@ include("../../functions/functions.php");
         <table class="table table-striped table-bordered" id="user_data">
             <tr>
              <th>Event name</th>
-             <th>Event Time</th>
              <th>Event Response</th>
              <th>Details</th>
              <th>Remove</th>
@@ -91,13 +90,12 @@ include("../../functions/functions.php");
 
  <!-- Get form entries from database -->
  <?php
- $todaysdate = date('Y-m-d H:i:s');
- $nextdate = date('Y-m-d H:i:s', strtotime("+1 day"));
+ $todaysdate = date('Y-m-d');
+ $nextdate = date('Y-m-d', strtotime("+1 day"));
  $geteventsquery = "SELECT * FROM `Sensum_Events`
                     WHERE `User_ID` = 1 AND `Event_Start` BETWEEN '$todaysdate' AND '$nextdate'";
  $result = mysqli_query($conn, $geteventsquery) or die(mysqli_error($conn));
  $row = mysqli_fetch_assoc($result);
- print_r($result);
  if(mysqli_num_rows($result) > 0){
    $eventid = $row['id'];
    $userid = $row['User_ID'];
@@ -208,54 +206,6 @@ include("../../functions/functions.php");
       } else {
         emotiondescription = '';
       }
-    	//Takes Event id
-    	//Currently only taking first event id
-    	// if($('#Event_ID').val() == '')
-    	// {
-    	// 	eventid = 'Last Name is required';
-    	// 	$('#error_last_name').text(error_last_name);
-    	// 	$('#last_name').css('border-color', '#cc0000');
-    	// 	eventid = '';
-    	// }
-    	// else
-    	// {
-    	// 	eventid = '';
-    	// 	$('#error_last_name').text(error_last_name);
-    	// 	$('#last_name').css('border-color', '');
-    	// 	eventid = $('#Event_ID').val();
-    	// }
-
-    	//Takes event description
-    	// if($('#eventdescription').val() == '')
-    	// {
-    	// 	error_last_name = 'Last Name is required';
-    	// 	$('#error_last_name').text(error_last_name);
-    	// 	$('#last_name').css('border-color', '#cc0000');
-    	// 	eventdescription = '';
-    	// }
-    	// else
-    	// {
-    	// 	error_last_name = '';
-    	// 	$('#error_last_name').text(error_last_name);
-    	// 	$('#last_name').css('border-color', '');
-    	// 	eventdescription = $('#eventdescription').val();
-    	// }
-    	
-    	//Takes User ID
-    	// if($('#User_ID').val() == '')
-    	// {
-    	// 	error_last_name = 'Last Name is required';
-    	// 	$('#error_last_name').text(error_last_name);
-    	// 	$('#last_name').css('border-color', '#cc0000');
-    	// 	userid = '';
-    	// }
-    	// else
-    	// {
-    	// 	error_last_name = '';
-    	// 	$('#error_last_name').text(error_last_name);
-    	// 	$('#last_name').css('border-color', '');
-    	// 	userid = $('#User_ID').val();
-    	// }
 
     	// Validation for radio buttons
     	if($('input[name=emotion]:checked').val() == ''){
@@ -281,7 +231,7 @@ include("../../functions/functions.php");
     			count = count + 1;
     			output = '<tr id="row_'+count+'">';
     			output += '<td>'+eventdescription+' <input type="hidden" name="hidden_event_name[]" id="event_name'+count+'" class="event_name" value="'+eventid+'" /></td>';
-    			output += '<td>'+userid+' <input type="hidden" name="hidden_user_name[]" id="user_name'+count+'" value="'+userid+'" /></td>';
+    			output += '<input type="hidden" name="hidden_user_name[]" id="user_name'+count+'" value="'+userid+'" />';
     			output += '<td>'+emotiondescription+' <input type="hidden" name="hidden_emotion[]" id="emotion'+count+'" value="'+emotion+'" /></td>';
     			output += '<td><button type="button" name="view_details" class="btn btn-warning btn-xs view_details" id="'+count+'">View</button></td>';
     			output += '<td><button type="button" name="remove_details" class="btn btn-danger btn-xs remove_details" id="'+count+'">Remove</button></td>';
@@ -306,9 +256,11 @@ include("../../functions/functions.php");
     });
     // View details of each entry upon click
     $(document).on('click', '.view_details', function(){
+      //Gets values from existing row
     	var row_id = $(this).attr("id");
     	var first_name = $('#first_name'+row_id+'').val();
     	var last_name = $('#last_name'+row_id+'').val();
+      //Sets new values
     	$('#first_name').val(first_name);
     	$('#last_name').val(last_name);
     	//Changes text from SAVE to EDIT
