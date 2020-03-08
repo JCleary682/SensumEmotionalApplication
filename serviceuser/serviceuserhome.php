@@ -16,13 +16,46 @@ if(!isset($_SESSION["sensum_40159215"]))
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<link href="/SensumEmotionalApplication/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="/SensumEmotionalApplication/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="/SensumEmotionalApplication/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="/SensumEmotionalApplication/css/landing-page.min.css" rel="stylesheet">
 </head>
 <body>
 	<!-- Navbar --> 
-	<?php
-      usernav();
-    ?>
+	<nav class='navbar navbar-expand-lg navbar-light bg-light'>
+      <a class='navbar-brand' href='#'>Sensum Magic Mirror</a>
+      <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
+        <span class='navbar-toggler-icon'></span>
+      </button>
+      <div class='collapse navbar-collapse' id='navbarNav'>
+        <ul class='navbar-nav ml-auto'>
+          <li class='nav-item mx-2'>
+            <a class='nav-link rounded bg-info' href='/SensumEmotionalApplication/serviceuser/serviceuserhome.php'>Home</a>
+          </li>
+          <li class='nav-item mx-2'>
+            <a class='nav-link rounded bg-primary' href='/SensumEmotionalApplication/serviceuser/userevents/eventcalendar.php'>View Events</a>
+          </li>
+          <li class='nav-item mx-2'>
+            <a class='nav-link rounded bg-danger' href='/SensumEmotionalApplication/serviceuser/sensumform/sensumform.php'>Daily Walkthrough</a>
+          </li>
+          <li class='nav-item mx-2'>
+            <a class='nav-link rounded bg-success' href='/SensumEmotionalApplication/serviceuser/reports/userreports.php'>View Reports</a>
+          </li>
+          <li class='nav-item mx-2'>
+            <a class='nav-link rounded bg-warning' href='/SensumEmotionalApplication/serviceuser/settings/settings.php'>Your Settings</a>
+          </li>
+          <li class='nav-item mx-2'>
+            <a class='nav-link rounded bg-primary' href='/SensumEmotionalApplication/login/logout.php'>Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 	<!-- Navbar end -->
 	<h1>User Home</h1>
 
@@ -101,8 +134,8 @@ if(!isset($_SESSION["sensum_40159215"]))
 	</section>
 
 	<!-- jQuery first, then Tether, then Bootstrap JS. -->
-	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	        <!-- Bootstrap core JavaScript -->
+  <script src="/SensumEmotionalApplication/vendor/jquery/jquery.min.js"></script>
+  <script src="/SensumEmotionalApplication/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
