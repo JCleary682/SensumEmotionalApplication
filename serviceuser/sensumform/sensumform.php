@@ -78,7 +78,6 @@ if(mysqli_num_rows($messageresult) > 0){
             <tr>
              <th>Event name</th>
              <th>Event Response</th>
-             <th>Details</th>
              <th>Remove</th>
            </tr>
          </table>
@@ -239,7 +238,6 @@ if(mysqli_num_rows($messageresult) > 0){
     			output += '<td>'+eventdescription+' <input type="hidden" name="hidden_event_name[]" id="event_name'+count+'" class="event_name" value="'+eventid+'" /></td>';
     			output += '<input type="hidden" name="hidden_user_name[]" id="user_name'+count+'" value="'+userid+'" />';
     			output += '<td>'+emotiondescription+' <input type="hidden" name="hidden_emotion[]" id="emotion'+count+'" value="'+emotion+'" /></td>';
-    			output += '<td><button type="button" name="view_details" class="btn btn-warning btn-xs view_details" id="'+count+'">View</button></td>';
     			output += '<td><button type="button" name="remove_details" class="btn btn-danger btn-xs remove_details" id="'+count+'">Remove</button></td>';
     			output += '</tr>';
     			//Appends user data table with above details
@@ -259,21 +257,6 @@ if(mysqli_num_rows($messageresult) > 0){
 
     		// $('#user_dialog').dialog('close');
     	}
-    });
-    // View details of each entry upon click
-    $(document).on('click', '.view_details', function(){
-      //Gets values from existing row
-    	var row_id = $(this).attr("id");
-    	var first_name = $('#first_name'+row_id+'').val();
-    	var last_name = $('#last_name'+row_id+'').val();
-      //Sets new values
-    	$('#first_name').val(first_name);
-    	$('#last_name').val(last_name);
-    	//Changes text from SAVE to EDIT
-    	$('#save').text('Edit');
-    	$('#hidden_row_id').val(row_id);
-    	$('#user_dialog').dialog('option', 'title', 'Edit Data');
-    	$('#user_dialog').dialog('open');
     });
     // Remove entries data
     $(document).on('click', '.remove_details', function(){
@@ -311,7 +294,7 @@ if(mysqli_num_rows($messageresult) > 0){
     			{
     				//Removes table rows and opens a dialog alert when successful
     				$('#user_data').find("tr:gt(0)").remove();
-    				$('#action_alert').html('<p>Data Inserted Successfully</p>');
+    				$('#action_alert').html('<p>Feedback complete!</p>');
     				$('#action_alert').dialog('open');
     			}
     		})

@@ -20,7 +20,7 @@ $responsequery = "SELECT * FROM `Sensum_HealthRecord`
 $responsequeryresult = mysqli_query($conn, $responsequery);
 $responsecount = mysqli_num_rows($responsequeryresult);
 $todaysdate = date('Y-m-d H:i:s');
-$nextdate = date('Y-m-d H:i:s', strtotime("+1 week"));
+$nextdate = date('Y-m-d H:i:s', strtotime("-1 week"));
 ?>
 
 <!-- https://www.webslesson.info/2016/10/make-simple-pie-chart-by-google-chart-api-with-php-mysql.html -->
@@ -49,15 +49,17 @@ $nextdate = date('Y-m-d H:i:s', strtotime("+1 week"));
 				['Emotion', 'Number'],  
 				<?php  
 				$todaysdate = date('Y-m-d');
-				$nextdate = date('Y-m-d', strtotime("+1 week"));
+				$nextdate = date('Y-m-d', strtotime("-1 week"));
 
 				$feedbackquery = "SELECT *, count(*) as number FROM `Sensum_HealthRecord`
-									INNER JOIN `Sensum_FeedbackType`
-									ON `Sensum_HealthRecord`.`Feedback` = `Sensum_FeedbackType`.`Feedback_Type`
-									INNER JOIN `Sensum_Events`
-									ON `Sensum_HealthRecord`.`Event_ID` = `Sensum_Events`.`id`
-									WHERE `Sensum_HealthRecord`.`User_ID` = 1 AND `Sensum_Events`.`Event_Start` BETWEEN '$todaysdate' AND '$nextdate'
-									GROUP BY `Feedback`";
+                          INNER JOIN `Sensum_FeedbackType`
+                          ON `Sensum_HealthRecord`.`Feedback` = `Sensum_FeedbackType`.`Feedback_Type`
+                          INNER JOIN `Sensum_Events`
+                          ON `Sensum_HealthRecord`.`Event_ID` = `Sensum_Events`.`id`
+                          WHERE `Sensum_HealthRecord`.`User_ID` = 1 
+                          AND `Sensum_Events`.`Event_Start` < '$todaysdate' 
+                          AND `Sensum_Events`.`Event_Start` > '$nextdate'
+                          GROUP BY `Feedback`";
 				$result = mysqli_query($conn, $feedbackquery);
 				while($row = mysqli_fetch_array($result))  
 				{  

@@ -1,11 +1,9 @@
 <?php
+// REFERENCE:
+// CODE TAKEN FROM:
+// https://www.webslesson.info/2017/12/jquery-fullcalandar-integration-with-php-and-mysql.html
 
 include("../../connection/conn.php");
-// $connect = new PDO('HOSTNAME', 'root', '');
-
-//$data = array();
-
-//Runs events query
 $eventsquery = "SELECT * FROM `Sensum_Events`";
 
 $eventsresult = mysqli_query($conn, $eventsquery) or die(mysqli_error($conn));

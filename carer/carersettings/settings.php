@@ -8,23 +8,9 @@ if(!isset($_SESSION["sensum_40159215"]))
     header("Location: /SensumEmotionalApplication/login/login.php");
 }
 
-// print_r($_SESSION);
 
 $getuserid = "SELECT * FROM `Sensum_Users` WHERE `Username` = '{$_SESSION['sensum_40159215']}'";
 $userresult = mysqli_query($conn, $getuserid) or die(mysqli_error($conn));
-
-//Not sure why this isnt working
-// if(mysqli_num_rows($userresult)>0) {
-//     while($row = mysqli_fetch_assoc($userresult)){
-//       $id = $row['ID'];
-//       $typeid = $row['UserType_ID'];
-//       $name = $row['Name'];
-//       $username = $row['Username'];
-//       // echo "User found";
-//     }
-// } else {
-//     echo "User does not exist";
-// }
 
 ?>
 
@@ -78,7 +64,7 @@ $userresult = mysqli_query($conn, $getuserid) or die(mysqli_error($conn));
   <div class="container-fluid my-2">
     <div class="row">
       <div class="col-md-6 align-self- mx-auto">
-        <form name="settings" action="submit-settings.php" method="post" id="comment-form">
+        <form name="settings" action="" method="post" id="comment-form">
           <div class="form-group">
             <input type="hidden" id="userid" name="userid" value="1">
             <input type="hidden" id="carerid" name="carerid" value="2">
@@ -91,6 +77,39 @@ $userresult = mysqli_query($conn, $getuserid) or die(mysqli_error($conn));
     </div>
   </div>
 
+  <?php
+  if(isset($_POST['submit'])){
+
+    $userid = $_POST['userid'];
+    $carerid = $_POST['carerid'];
+    $message = $_POST['message'];
+
+    //Prepare the insert statement
+    $query = "INSERT INTO Sensum_CaregiverMessage(`User_ID`, `Carer_ID`, `Message`) VALUES (?,?,?)";
+    if($stmt = mysqli_prepare($conn, $query)){
+      //bind variable to the prepared statement as parameters
+      mysqli_stmt_bind_param($stmt, "iis", $userid, $carerid, $message);
+
+      //Set Values
+      $userid = $_POST['userid'];
+      $carerid = $_POST['carerid'];
+      $message = $_POST['message'];
+
+      echo "
+      <div class='container'>
+        <div class='row'>
+          <div class='col-md-6 mx-auto'>
+          <p> Message has been submitted!<p>
+          </div>
+        </div>
+      </div>";
+      mysqli_stmt_execute($stmt);
+    } else{
+      echo "ERROR: Could not prepare query: $query . " . mysqli_error($conn);
+    }
+
+  }
+  ?>
 
   <!-- Bootstrap core JavaScript -->
   <script src="/SensumEmotionalApplication/vendor/jquery/jquery.min.js"></script>
