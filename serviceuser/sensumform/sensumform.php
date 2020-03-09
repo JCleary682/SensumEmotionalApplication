@@ -19,7 +19,8 @@ if(mysqli_num_rows($messageresult) > 0){
 ?>
 <html>  
 <head>  
-  <title>PHP - Sending multiple forms data through jQuery Ajax</title>  
+  <!-- <title>PHP - Sending multiple forms data through jQuery Ajax</title>   -->
+  <title>Sensum Form</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <!-- Bootstrap core CSS -->
   <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -96,8 +97,9 @@ if(mysqli_num_rows($messageresult) > 0){
  <?php
  $todaysdate = date('Y-m-d');
  $nextdate = date('Y-m-d', strtotime("+1 day"));
- $geteventsquery = "SELECT * FROM `Sensum_Events`
-                    WHERE `User_ID` = 1 AND `Event_Start` BETWEEN '$todaysdate' AND '$nextdate'";
+ // $geteventsquery = "SELECT * FROM `Sensum_Events`
+ //                    WHERE `User_ID` = 1 AND `Event_Start` BETWEEN '$todaysdate' AND '$nextdate'";
+ $geteventsquery = "SELECT * FROM `Sensum_Events` WHERE `User_ID` = 1 AND `Event_Start` = '$todaysdate' LIMIT 1, 1";
  $result = mysqli_query($conn, $geteventsquery) or die(mysqli_error($conn));
  $row = mysqli_fetch_assoc($result);
  if(mysqli_num_rows($result) > 0){
@@ -183,7 +185,7 @@ if(mysqli_num_rows($messageresult) > 0){
     });
     // Add entries to form
     $('#add').click(function(){
-    	$('#user_dialog').dialog('option', 'title', 'Add Data');
+    	$('#user_dialog').dialog('option', 'title', 'Your Events');
     	$('#emotion').val('');
     	$('#error_emotion').text('');
     	$('#save').text('Save');
@@ -317,7 +319,7 @@ if(mysqli_num_rows($messageresult) > 0){
     	// Else alert user that no entries have been submitted
     	else
     	{
-    		$('#action_alert').html('<p>Please Add atleast one data</p>');
+    		$('#action_alert').html('<p>Please review at least one event</p>');
     		$('#action_alert').dialog('open');
     	}
     });

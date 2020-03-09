@@ -106,7 +106,9 @@ if(!isset($_SESSION["sensum_40159215"]))
     ?>
     <!-- Navbar end -->
     </div>
-    <h3>Your daily events!</h3>
+    <div class="container" align='center'>
+    	<h3>Your daily events!</h3>
+    </div>
     <br>
     <!-- Display Calendar -->
 

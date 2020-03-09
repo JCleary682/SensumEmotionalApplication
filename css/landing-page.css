@@ -95,6 +95,24 @@ header.masthead h1 {
   width: 100%;
 }
 
+.rotateimg90 {
+  transform: rotate(90deg);
+}
+
+.userdialogimage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.userdialogmessage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+}
+
 .testimonials {
   padding-top: 7rem;
   padding-bottom: 7rem;

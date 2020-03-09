@@ -7,11 +7,7 @@ $eventNewCount = $_POST['eventNewCount'];
 $todaysdate = date('Y-m-d');
 $nextdate = date('Y-m-d', strtotime("+1 day"));
 // Gets Events with matching ID
-// $geteventsquery = "SELECT * FROM `Sensum_Events` WHERE `Event_Start` > '$todaysdate' AND `Event_Start` < '$nextdate' LIMIT '$eventNewCount',1";
-$geteventsquery = "SELECT * FROM `Sensum_Events` WHERE `Event_Start` > '$todaysdate' AND `Event_Start` < '$nextdate'\n"
-
-    . "LIMIT $eventNewCount,1";
-// $getmessagequery = "SELECT * FROM `Sensum_CaregiverMessage`   WHERE `id` = (SELECT MAX(`id`) FROM `Sensum_CaregiverMessage`) ";
+$geteventsquery = "SELECT * FROM `Sensum_Events` WHERE `User_ID` = 1 AND `Event_Start` = '$todaysdate' LIMIT $eventNewCount, 1";
 //Stores ALL Events in result (Most likely an array)!
 $result = mysqli_query($conn, $geteventsquery) or die(mysqli_error($conn));
 // $messageresult = mysqli_query($conn, $getmessagequery) or die(mysqli_error($conn));
@@ -52,9 +48,11 @@ if(mysqli_num_rows($result) > 0){
 	if($messagerows > 0){
 		while($row = mysqli_fetch_assoc($messageresult)) {
 			$message = $row['Message'];
-			echo "<h1>$message<h1/>
+			echo "<h1 class='userdialogmessage'>$message<h1/>
+			<img src='../../img/Happy.png' class='userdialogimage'>
 			<style>
 				#emotions {display: none}
+				#save {display:none}
 			</style>
 			";
 		}

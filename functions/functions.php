@@ -48,9 +48,6 @@ function carerNav(){
             <a class='nav-link rounded bg-primary' href='/SensumEmotionalApplication/carer/carerevents/eventcalendar.php'>View Events</a>
           </li>
           <li class='nav-item mx-2'>
-            <a class='nav-link rounded bg-danger' href='/SensumEmotionalApplication/carer/responses/responses.php'>User Responses</a>
-          </li>
-          <li class='nav-item mx-2'>
             <a class='nav-link rounded bg-success' href='/SensumEmotionalApplication/carer/carerreports/carerreports.php'>View Reports</a>
           </li>
           <li class='nav-item mx-2'>

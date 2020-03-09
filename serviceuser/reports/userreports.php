@@ -10,17 +10,15 @@ if(!isset($_SESSION["sensum_40159215"]))
 }
 
 $responsequery = "SELECT * FROM `Sensum_HealthRecord`
-          INNER JOIN `Sensum_FeedbackType`
-          ON `Sensum_HealthRecord`.`Feedback` = `Sensum_FeedbackType`.`Feedback_Type`
-          INNER JOIN `Sensum_Users`
-          ON `Sensum_HealthRecord`.`User_ID` = `Sensum_Users`.`ID`
-          INNER JOIN `Sensum_Events`
-          ON `Sensum_HealthRecord`.`Event_ID` = `Sensum_Events`.`id`
-          LIMIT 10";
+INNER JOIN `Sensum_FeedbackType`
+ON `Sensum_HealthRecord`.`Feedback` = `Sensum_FeedbackType`.`Feedback_Type`
+INNER JOIN `Sensum_Users`
+ON `Sensum_HealthRecord`.`User_ID` = `Sensum_Users`.`ID`
+INNER JOIN `Sensum_Events`
+ON `Sensum_HealthRecord`.`Event_ID` = `Sensum_Events`.`id`
+LIMIT 10";
 $responsequeryresult = mysqli_query($conn, $responsequery);
 $responsecount = mysqli_num_rows($responsequeryresult);
-$todaysdate = date('Y-m-d H:i:s');
-$nextdate = date('Y-m-d H:i:s', strtotime("+1 week"));
 ?>
 
 <!-- https://www.webslesson.info/2016/10/make-simple-pie-chart-by-google-chart-api-with-php-mysql.html -->
@@ -48,16 +46,16 @@ $nextdate = date('Y-m-d H:i:s', strtotime("+1 week"));
       var data = google.visualization.arrayToDataTable([  
         ['Emotion', 'Number'],  
         <?php  
-        $todaysdate = date('Y-m-d H:i:s');
-        $nextdate = date('Y-m-d H:i:s', strtotime("+1 week"));
+        $todaysdate = date('Y-m-d');
+        $nextdate = date('Y-m-d', strtotime("-1 week"));
 
         $feedbackquery = "SELECT *, count(*) as number FROM `Sensum_HealthRecord`
-                  INNER JOIN `Sensum_FeedbackType`
-                  ON `Sensum_HealthRecord`.`Feedback` = `Sensum_FeedbackType`.`Feedback_Type`
-                  INNER JOIN `Sensum_Events`
-                  ON `Sensum_HealthRecord`.`Event_ID` = `Sensum_Events`.`id`
-                  WHERE `Sensum_HealthRecord`.`User_ID` = 1 AND `Sensum_Events`.`Event_Start` BETWEEN '$todaysdate' AND '$nextdate'
-                  GROUP BY `Feedback`";
+        INNER JOIN `Sensum_FeedbackType`
+        ON `Sensum_HealthRecord`.`Feedback` = `Sensum_FeedbackType`.`Feedback_Type`
+        INNER JOIN `Sensum_Events`
+        ON `Sensum_HealthRecord`.`Event_ID` = `Sensum_Events`.`id`
+        WHERE `Sensum_HealthRecord`.`User_ID` = 1 AND `Sensum_Events`.`Event_Start` BETWEEN '$todaysdate' AND '$nextdate'
+        GROUP BY `Feedback`";
         $result = mysqli_query($conn, $feedbackquery);
         while($row = mysqli_fetch_array($result))  
         {  
@@ -69,37 +67,37 @@ $nextdate = date('Y-m-d H:i:s', strtotime("+1 week"));
         title: 'Weekly Responses Report',  
                       //is3D:true,  
                       pieHole: 0.4  
-                  };  
-                  var chart = new google.visualization.PieChart(document.getElementById('piechart'));  
-                  chart.draw(data, options);  
-              }  
-          </script>
-          <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-      <script>
+                    };  
+                    var chart = new google.visualization.PieChart(document.getElementById('piechart'));  
+                    chart.draw(data, options);  
+                  }  
+                </script>
+                <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+                <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+                <script>
             //Jquery code here!
             $(document).ready(function(){
-               $("#happy").click(function(){
-                 $("#report").load("filterhappy.php", {
-                 });
-               });
-               $("#sad").click(function(){
-                 $("#report").load("filtersad.php", {
-                 });
-               });
-               $("#indifferent").click(function(){
-                 $("#report").load("filterindifferent.php", {
-                 });
-               });
-               $("#more").click(function(){
-                 $("#report").load("load-more.php", {
-                 });
+             $("#happy").click(function(){
+               $("#report").load("filterhappy.php", {
                });
              });
-      </script>
-</head>
+             $("#sad").click(function(){
+               $("#report").load("filtersad.php", {
+               });
+             });
+             $("#indifferent").click(function(){
+               $("#report").load("filterindifferent.php", {
+               });
+             });
+             $("#more").click(function(){
+               $("#report").load("load-more.php", {
+               });
+             });
+           });
+         </script>
+       </head>
 
-      <body>
+       <body>
         <?php
         userNav();
         ?>
@@ -110,7 +108,7 @@ $nextdate = date('Y-m-d H:i:s', strtotime("+1 week"));
             <div class="col-lg-6">
               <h3>Your User Reports!</h3>
               <div style="width: 600px;">
-              <div id="piechart" style="width: 900px; height: 500px;"></div>  
+                <div id="piechart" style="width: 900px; height: 500px;"></div>  
               </div>    
             </div>
             <div class="col-lg-6">
@@ -134,28 +132,28 @@ $nextdate = date('Y-m-d H:i:s', strtotime("+1 week"));
                 <tbody id="report">
                   <?php
                   $rownumber = 1; 
-              if ($responsecount > 0) {
-                while ($row = mysqli_fetch_assoc($responsequeryresult)) {
-                  $eventname = $row['Description'];
-                  $eventresponse = $row['Emotion'];
-                  $eventstart = $row['Event_Start'];
-                  $eventend = $row['Event_End'];
-                  echo "<tr id='reporttable'>
+                  if ($responsecount > 0) {
+                    while ($row = mysqli_fetch_assoc($responsequeryresult)) {
+                      $eventname = $row['Description'];
+                      $eventresponse = $row['Emotion'];
+                      $eventstart = $row['Event_Start'];
+                      $eventend = $row['Event_End'];
+                      echo "<tr id='reporttable'>
                       <td>$rownumber</td>
                       <td>$eventname</td>
                       <td>$eventresponse</td>
                       <td>$eventstart</td>
                       <td>$eventend</td>
-                        </tr>";
-                      $rownumber++;
-                }
-                # code...
-              } else {
-                echo "<tr>
-                No Results!
                       </tr>";
-              }
-              
+                      $rownumber++;
+                    }
+                # code...
+                  } else {
+                    echo "<tr>
+                    No Results!
+                    </tr>";
+                  }
+                  
                   ?>
 
                 </tbody>
@@ -166,8 +164,8 @@ $nextdate = date('Y-m-d H:i:s', strtotime("+1 week"));
         </div>
 
         <!-- Bootstrap core JavaScript -->
-  <script src="/SensumEmotionalApplication/vendor/jquery/jquery.min.js"></script>
-  <script src="/SensumEmotionalApplication/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/SensumEmotionalApplication/vendor/jquery/jquery.min.js"></script>
+        <script src="/SensumEmotionalApplication/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
       </body>
       </html>
 
