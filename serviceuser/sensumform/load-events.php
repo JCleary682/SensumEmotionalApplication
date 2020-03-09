@@ -45,11 +45,22 @@ if(mysqli_num_rows($result) > 0){
 	$getmessagequery = "SELECT * FROM `Sensum_CaregiverMessage`   WHERE `id` = (SELECT MAX(`id`) FROM `Sensum_CaregiverMessage`) ";
 	$messageresult = mysqli_query($conn, $getmessagequery) or die(mysqli_error($conn));
 	$messagerows = mysqli_num_rows($messageresult);
+	$getimagequery = "SELECT * FROM `Sensum_Images` WHERE `id` = (SELECT MAX(`id`) FROM `Sensum_Images`)";
+	$imageresult = mysqli_query($conn, $getimagequery) or die(mysqli_error($conn));
+	$imagerows = mysqli_num_rows($imageresult);
+	$img = "Happy.png";
+	
+	if($imagerows > 0) {
+		 $row = mysqli_fetch_assoc($imageresult);
+		 $img = $row['img'];
+		 echo $img;
+	}
+
 	if($messagerows > 0){
 		while($row = mysqli_fetch_assoc($messageresult)) {
 			$message = $row['Message'];
 			echo "<h1 class='userdialogmessage'>$message<h1/>
-			<img src='../../img/Happy.png' class='userdialogimage'>
+			<img src='../../img/$img' class='userdialogimage'>
 			<style>
 				#emotions {display: none}
 				#save {display:none}
