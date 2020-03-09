@@ -2,6 +2,12 @@
 include("../../connection/conn.php");
 include("../../functions/functions.php");
 
+// REFERENCE:
+// CODE TAKEN FROM:
+//https://www.webslesson.info/2016/10/make-simple-pie-chart-by-google-chart-api-with-php-mysql.html 
+//https://www.youtube.com/watch?v=XhMGV8PzyOg (Ajax load tutorial)
+//Prepared Query is from previous project in Year 2
+
 session_start();
 
 if(!isset($_SESSION["sensum_40159215"]))
@@ -22,8 +28,6 @@ $responsecount = mysqli_num_rows($responsequeryresult);
 $todaysdate = date('Y-m-d H:i:s');
 $nextdate = date('Y-m-d H:i:s', strtotime("-1 week"));
 ?>
-
-<!-- https://www.webslesson.info/2016/10/make-simple-pie-chart-by-google-chart-api-with-php-mysql.html -->
 <!DOCTYPE html>
 
 <html>

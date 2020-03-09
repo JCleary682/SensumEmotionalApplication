@@ -20,8 +20,12 @@ LIMIT 10";
 $responsequeryresult = mysqli_query($conn, $responsequery);
 $responsecount = mysqli_num_rows($responsequeryresult);
 ?>
-<!-- Example taken from: -->
-<!-- https://www.webslesson.info/2016/10/make-simple-pie-chart-by-google-chart-api-with-php-mysql.html -->
+<!-- REFERENCE:
+CODE TAKEN FROM:
+https://www.webslesson.info/2016/10/make-simple-pie-chart-by-google-chart-api-with-php-mysql.html 
+https://www.youtube.com/watch?v=XhMGV8PzyOg (Ajax load tutorial)
+Prepared Query is from previous project in Year 2 -->
+
 <!DOCTYPE html>
 
 <html>

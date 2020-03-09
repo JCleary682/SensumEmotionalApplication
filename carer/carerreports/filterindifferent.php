@@ -1,4 +1,5 @@
 <?php
+//Prepared Query is from previous project in Year 2
 include("../../connection/conn.php");
 
 // HAPPY
@@ -29,7 +30,6 @@ if ($indifferentcount > 0) {
 		</tr>";
 		$rownumber++;
 	}
-								# code...
 } else {
 	echo "<tr>
 	No Results!

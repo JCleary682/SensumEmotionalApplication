@@ -1,6 +1,6 @@
 <?php
 include("../../connection/conn.php");
-
+//Prepared Query is from previous project in Year 2
 // HAPPY
 $sadquery = "SELECT * FROM `Sensum_HealthRecord`
 INNER JOIN `Sensum_FeedbackType`
@@ -29,7 +29,6 @@ if ($sadcount > 0) {
 		</tr>";
 		$rownumber++;
 	}
-								# code...
 } else {
 	echo "<tr>
 	No Results!

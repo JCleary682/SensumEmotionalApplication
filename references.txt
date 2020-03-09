@@ -1,0 +1,5 @@
+CODE HAS BEEN REFERENCED THROUGHOUT 
+PLEASE NOTE:
+Vendor, scss, css, gulpfile.js, package-lock.json, package.json, README.md and LICENSE have been taken from:
+https://github.com/BlackrockDigital/startbootstrap-landing-page
+As they are part of a built template

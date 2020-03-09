@@ -1,4 +1,5 @@
 <?php
+//Prepared Query is from previous project in Year 2
 include("../../connection/conn.php");
 echo "Connection Successful!";
 

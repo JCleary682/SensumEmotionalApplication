@@ -1,10 +1,7 @@
 <?php
 include("../../connection/conn.php");
 echo "connection successful";
-// $query = "INSERT INTO tbl_sample (first_name, last_name) VALUES (:first_name, :last_name)";
 $query = "INSERT INTO `Sensum_HealthRecord` (`Event_ID`, `User_ID`, `Feedback`) VALUES (?,?,?)";
-// $count = count($_POST['hidden_event_name'];
-// echo $count;
 for($count = 0; $count<count($_POST['hidden_event_name']); $count++)
 {
 	if($stmt = mysqli_prepare($conn, $query)){

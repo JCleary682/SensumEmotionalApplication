@@ -16,6 +16,10 @@ $row = mysqli_fetch_assoc($messageresult);
 if(mysqli_num_rows($messageresult) > 0){
    $message = $row['Message'];
  }
+// REFERENCE:
+// Code taken from : https://www.webslesson.info/2018/04/php-sending-multiple-forms-data-using-jquery-ajax.html
+// ALSO AJAX Query taken from https://www.youtube.com/watch?v=XhMGV8PzyOg
+// Prepared queries taken from 2nd year project
 ?>
 <html>  
 <head>  
@@ -98,7 +102,7 @@ if(mysqli_num_rows($messageresult) > 0){
  $nextdate = date('Y-m-d', strtotime("+1 day"));
  // $geteventsquery = "SELECT * FROM `Sensum_Events`
  //                    WHERE `User_ID` = 1 AND `Event_Start` BETWEEN '$todaysdate' AND '$nextdate'";
- $geteventsquery = "SELECT * FROM `Sensum_Events` WHERE `User_ID` = 1 AND `Event_Start` = '$todaysdate' LIMIT 1, 1";
+ $geteventsquery = "SELECT * FROM `Sensum_Events` WHERE `User_ID` = 1 AND `Event_Start` = '$todaysdate' LIMIT 0, 1";
  $result = mysqli_query($conn, $geteventsquery) or die(mysqli_error($conn));
  $row = mysqli_fetch_assoc($result);
  if(mysqli_num_rows($result) > 0){

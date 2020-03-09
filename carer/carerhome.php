@@ -7,6 +7,10 @@ if(!isset($_SESSION["sensum_40159215"]))
   header("Location: /SensumEmotionalApplication/login/login.php");
 }
 
+// REFERENCE:
+// CODE TAKEN FROM https://github.com/BlackrockDigital/startbootstrap-landing-page
+// AND bootstrap documents online
+
 ?>
 
 <!DOCTYPE html>

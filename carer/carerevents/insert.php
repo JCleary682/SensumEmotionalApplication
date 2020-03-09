@@ -1,6 +1,9 @@
 <?php
 include("../../connection/conn.php");
-
+// REFERENCE:
+// CODE TAKEN FROM:
+// https://www.webslesson.info/2017/12/jquery-fullcalandar-integration-with-php-and-mysql.html
+// Prepared Query is from previous project in Year 2
 echo "Connection Successful!";
 if(isset($_POST["title"]))
 {

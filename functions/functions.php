@@ -84,12 +84,4 @@ function getEventsSensum(){
   }
 }
 
-
-function stepGenerator(){
-	for ($i=0; $i < 6; $i++) { 
-		# code...
-		echo "<span class='step'></span>";
-	}
-}
-
 ?>

@@ -12,6 +12,8 @@ if(!isset($_SESSION["sensum_40159215"]))
 $getuserid = "SELECT * FROM `Sensum_Users` WHERE `Username` = '{$_SESSION['sensum_40159215']}'";
 $userresult = mysqli_query($conn, $getuserid) or die(mysqli_error($conn));
 
+
+
 ?>
 
 <!DOCTYPE html>
@@ -38,6 +40,7 @@ $userresult = mysqli_query($conn, $getuserid) or die(mysqli_error($conn));
   <link href="/SensumEmotionalApplication/css/landing-page.min.css" rel="stylesheet">
 
   <!-- Ajax Script -->
+  <!-- REFERENCE: https://www.youtube.com/watch?v=MG9itGX1hD0&t=613s (Ajax post query) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script>
     $(document).ready(function(){

@@ -1,6 +1,6 @@
 <?php
 include("../../connection/conn.php");
-
+//Prepared Query is from previous project in Year 2
 // HAPPY
 $morequery = "SELECT * FROM `Sensum_HealthRecord`
 INNER JOIN `Sensum_FeedbackType`
